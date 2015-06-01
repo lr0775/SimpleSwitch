@@ -138,9 +138,6 @@ public class SimpleSwitch extends CompoundButton implements AnimationListener {
 		mTrackRect = new Rect(0, 0, width, height);
 		mThumbRect = new Rect();
 
-		mTrackRectF = new RectF(mTrackRect);
-		mThumbRectF = new RectF(mThumbRect);
-
 		if (mShape == SHAPE_RECT) {
 			mMaxThumbLeftMargin = width / 2;
 			mThumbWidth = getMeasuredWidth() / 2 - mPadding;
@@ -160,6 +157,9 @@ public class SimpleSwitch extends CompoundButton implements AnimationListener {
 			mAlpha = 0;
 		}
 		mTempThumbLeftMargin = mThumbLeftMargin;
+
+		mTrackRectF = new RectF(mTrackRect);
+		mThumbRectF = new RectF(mThumbRect);
 	}
 
 	@Override
@@ -176,13 +176,13 @@ public class SimpleSwitch extends CompoundButton implements AnimationListener {
 			mPaint.setColor(Color.WHITE);
 			canvas.drawRect(mThumbRect, mPaint);
 		} else {
-			int radius = mTrackRect.height() / 2 - mPadding;
+			int radius = mTrackRect.height() / 2;
 			mPaint.setColor(Color.GRAY);
 			canvas.drawRoundRect(mTrackRectF, radius, radius, mPaint);
 			mPaint.setColor(mCheckedColor);
 			mPaint.setAlpha(mAlpha);
 			canvas.drawRoundRect(mTrackRectF, radius, radius, mPaint);
-			mThumbRect.set(mThumbLeftMargin, mPadding, mThumbLeftMargin
+			mThumbRectF.set(mThumbLeftMargin, mPadding, mThumbLeftMargin
 					+ mThumbHeight, getMeasuredHeight() - mPadding);
 			mPaint.setColor(Color.WHITE);
 			canvas.drawRoundRect(mThumbRectF, radius, radius, mPaint);

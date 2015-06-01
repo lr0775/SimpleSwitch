@@ -79,12 +79,12 @@
 
         <com.lr0775.widget.SimpleSwitch
             android:id="@+id/simple_switch"
-            android:layout_width="156dp"
+            android:layout_width="128dp"
             android:layout_height="64dp"
             android:layout_margin="16dp"
             simpleswitch:checked="true"
             simpleswitch:checkedColor="@color/pink"
-            simpleswitch:isRect="true" />
+            simpleswitch:isRect="false" />
 
         <android.support.v7.widget.SwitchCompat
             android:layout_width="wrap_content"
