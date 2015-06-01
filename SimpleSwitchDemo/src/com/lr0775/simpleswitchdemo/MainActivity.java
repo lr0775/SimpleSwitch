@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity implements
 		mSimpleSwitchTv = (TextView) findViewById(R.id.simple_switch_tv);
 		mSimpleSwitch = (SimpleSwitch) findViewById(R.id.simple_switch);
 		mSimpleSwitch.setOnCheckedChangeListener(this);
-		mSimpleSwitch.setChecked(true);
+		//mSimpleSwitch.setChecked(true);
 
 		findViewById(R.id.open_simple_switch_btn).setOnClickListener(this);
 	}

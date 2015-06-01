@@ -1,6 +1,7 @@
 package com.lr0775.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,6 +17,8 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
 import android.widget.CompoundButton;
+
+import com.lr0775.simpleswitch.R;
 
 public class SimpleSwitch extends CompoundButton implements AnimationListener {
 
@@ -50,8 +53,8 @@ public class SimpleSwitch extends CompoundButton implements AnimationListener {
 
 	private int mAlpha;
 
-	private int mCheckedColor = Color.parseColor("#ff00ee00");
-	private int mShape = SHAPE_RECT;
+	private int mCheckedColor;
+	private int mShape;
 
 	private int mMaxThumbLeftMargin;
 	private int mMinThumbLeftMargin;
@@ -76,6 +79,15 @@ public class SimpleSwitch extends CompoundButton implements AnimationListener {
 
 	public SimpleSwitch(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+		TypedArray a = context.obtainStyledAttributes(attrs,
+				R.styleable.SimpleSwitch);
+		mCheckedColor = a.getColor(R.styleable.SimpleSwitch_checkedColor,
+				Color.parseColor("#ff00ee00"));
+		boolean checked = a.getBoolean(R.styleable.SimpleSwitch_checked, false);
+		mShape = a.getBoolean(R.styleable.SimpleSwitch_isRect, true) ? SHAPE_RECT
+				: SHAPE_CIRCLE;
+		a.recycle();
+
 		final ViewConfiguration config = ViewConfiguration.get(context);
 		mTouchSlop = config.getScaledTouchSlop();
 
@@ -87,6 +99,8 @@ public class SimpleSwitch extends CompoundButton implements AnimationListener {
 		mThumbAnimation = new ThumbAnimation();
 		mThumbAnimation.setInterpolator(new LinearInterpolator());
 		mThumbAnimation.setAnimationListener(this);
+
+		setChecked(checked);
 	}
 
 	@Override

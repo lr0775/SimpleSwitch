@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SimpleSwitch">
+        <attr name="checkedColor" format="reference|color" />
+        <attr name="checked" format="boolean" />
+        <attr name="isRect" format="boolean" />
+    </declare-styleable>
+
+</resources>
